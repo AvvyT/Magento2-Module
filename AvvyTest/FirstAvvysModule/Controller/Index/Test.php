@@ -13,7 +13,6 @@ class Test extends \Magento\Framework\App\Action\Action{
     }
 
     public function execute(){
-        echo "Hej, här är mi första module! Grattis...!";
-        exit;
+        return $this->_pageFactory->create();
     }
 }
