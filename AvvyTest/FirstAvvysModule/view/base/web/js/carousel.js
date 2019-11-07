@@ -3,10 +3,15 @@ define([
     'AvvyTest_FirstAvvysModule/js/carousel/owl.carousel.min'
 ], function ($){
     'use strict';
-    
+
     $('.owl-carousel').owlCarousel({
-        loop:true,
-        items: 1,
-        nav: true
+        //loop:true,
+        //items: 1,
+        //nav: true
+        autoPlay: 3000, //Set AutoPlay to 3 seconds
+
+        items : 4,
+        itemsDesktop : [1199,3],
+        itemsDesktopSmall : [979,3]
     });
 });
