@@ -1,16 +1,12 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <head>
-        <css src="AvvyTest_FirstAvvysModule::css/owl.carousel.min.css" />
-        <css src="AvvyTest_FirstAvvysModule::css/owl.theme.default.min.css" />
-    </head>
     <body>
         <!--Carousel widget-->
-        <referenceContainer name="before.body.end">
-            <block name="avvytest.carousel.widget.js"
-                   class="Magento\Framework\View\Element\Template"
-                   template="AvvyTest_FirstAvvysModule::script.phtml" />
-        </referenceContainer>
+         <referenceContainer name="top.slider">
+            <block class="Magento\Framework\View\Element\Template" 
+                   name="slider.test" 
+                   template="AvvyTest_FirstAvvysModule::slider.phtml" />
+        </referenceContainer> 
 
         <!--Body Content-->
         <referenceContainer name="main">

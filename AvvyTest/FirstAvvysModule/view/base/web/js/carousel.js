@@ -1,17 +1,43 @@
 define([
-    'jquery',
-    'AvvyTest_FirstAvvysModule/js/carousel/owl.carousel.min'
-], function ($){
-    'use strict';
+  'jquery',
+  'AvvyTest_FirstAvvysModule/js/carousel/owl.carousel.min'
+], function () {
+  'use strict';
+  jQuery.noConflict();
 
-    $('.owl-carousel').owlCarousel({
-        //loop:true,
-        //items: 1,
-        //nav: true
-        autoPlay: 3000, //Set AutoPlay to 3 seconds
+  jQuery('.owl-carousel').owlCarousel({
+    pagination: false,
+    marginRight: 20,
+    lazyLoad: true,
 
-        items : 4,
-        itemsDesktop : [1199,3],
-        itemsDesktopSmall : [979,3]
-    });
+    navigation: true, // Show next and prev buttons
+    //navigationText: ["<", ">"], //show prev next
+    loop: true,
+    autoPlay: true,
+    /*
+   animateOut: 'fadeOut',
+   animateIn: 'fadeIn',
+   */
+    responsiveClass: true,
+    autoHeight: true,
+    autoplayTimeout: 7000,
+    smartSpeed: 800,
+    responsive: {
+      0: {
+        items: 1
+      },
+
+      600: {
+        items: 3
+      },
+
+      1024: {
+        items: 4
+      },
+
+      1366: {
+        items: 4
+      }
+    }
+  });
 });
