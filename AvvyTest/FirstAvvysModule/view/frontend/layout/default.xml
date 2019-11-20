@@ -8,6 +8,12 @@
                    template="AvvyTest_FirstAvvysModule::slider.phtml" />
         </referenceContainer> 
 
+        <!--  <referenceContainer name="top.widget">
+            <block class="Magento\Framework\View\Element\Template" 
+                   name="widget.test" 
+                   template="AvvyTest_FirstAvvysModule::product/widget/content/grid.phtml" />
+        </referenceContainer>  -->
+
         <!--Body Content-->
         <referenceContainer name="main">
             <block class="Magento\Framework\View\Element\Template" name="main.text" template="AvvyTest_FirstAvvysModule::text-i-main.phtml"/>
