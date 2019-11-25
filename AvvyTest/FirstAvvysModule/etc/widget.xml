@@ -2,40 +2,74 @@
 <!-- Declare widget -->
 
 <widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
-	<widget class="AvvyTest\FirstAvvysModule\Block\Widget\Test" id="avvytest_test_widget">
-		<label translate="true">Avvys Widget</label>
-		<description translate="true">Posts</description>
-        
+    <widget class="AvvyTest\FirstAvvysModule\Block\Product\ProductsList" id="avvytest_products_list">
+        <label translate="true">Avvys Widget</label>
+        <description>Sorted Catalog Products List</description>
         <parameters>
             <parameter name="title" xsi:type="text" required="true" visible="true" sort_order="10">
                 <label>Label</label>
             </parameter>
-            <parameter name="size" xsi:type="select" visible="true" required="true" sort_order="20">
-                <label translate="true">Size</label>
+            <parameter name="products_sort_by" xsi:type="select" visible="true" source_model="AvvyTest\FirstAvvysModule\Model\SortBy">
+                <label translate="true">Sort Products By</label>
+            </parameter>
+            <parameter name="products_sort_order" xsi:type="select" visible="true" source_model="AvvyTest\FirstAvvysModule\Model\SortOrder">
+                <label translate="true">Sort Products Order</label>
+            </parameter>
+            <parameter name="show_pager" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Display Page Control</label>
+            </parameter>
+            <parameter name="products_per_page" xsi:type="text" required="true" visible="true">
+                <label translate="true">Number of Products per Page</label>
+                <depends>
+                    <parameter name="show_pager" value="1" />
+                </depends>
+                <value>5</value>
+            </parameter>
+            <parameter name="products_count" xsi:type="text" required="true" visible="true">
+                <label translate="true">Number of Products to Display</label>
+                <value>10</value>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label>Template</label>
                 <options>
-                    <option name="s" value="S">
-                        <label>S</label>
+                    <option name="grid" value="category/widget/grid.phtml" selected="true">
+                        <label translate="true">Category Grid Template</label>
                     </option>
-                    <option name="m" value="M" selected="true">
-                        <label>M</label>
-                    </option>
-                    <option name="l" value="L">
-                        <label>L</label>
+                    <option name="sidebar" value="category_sid/widget/sidebar.phtml">
+                        <label translate="true">Category Sidebar Template</label>
                     </option>
                 </options>
             </parameter>
-        </parameters>
-		<!-- <parameters>
-			<parameter name="template" xsi:type="select"  required="true" sort_order="10" visible="true">
-              <label translate="true">Template</label>
+            <!-- <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
                 <options>
-                    <option name="slider" value="product/widget/content/grid.phtml" selected="true">
-                        <label translate="true">Products Avvys Slider</label>
+                    <option name="default" value="product/widget/new/content/new_grid.phtml" selected="true">
+                        <label translate="true">Products Grid Template</label>
                     </option>
                 </options>
-			</parameter>
-		</parameters> -->
-	</widget>
+            </parameter> -->
+            <parameter name="cache_lifetime" xsi:type="text" visible="true">
+                <label translate="true">Cache Lifetime (Seconds)</label>
+                <description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML Output cache.</description>
+            </parameter>
+            <parameter name="condition" xsi:type="conditions" visible="true" required="true" sort_order="10" class="Magento\CatalogWidget\Block\Product\Widget\Conditions">
+                <label translate="true">Conditions</label>
+            </parameter>
+        </parameters>
+        <containers>
+            <container name="sidebar.main">
+                <template name="default" value="sidebar" />
+            </container>
+            <container name="content">
+                <template name="grid" value="grid" />
+                <template name="list" value="list" />
+            </container>
+            <container name="sidebar.additional">
+                <template name="default" value="sidebar" />
+            </container>
+        </containers>
+    </widget>
 </widgets>
 
+ 
       
