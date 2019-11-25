@@ -1,18 +1,18 @@
 <?php
+// Our final Url will be STORE_URL/demo/index/test
 namespace AvvyTest\FirstAvvysModule\Controller\Index;
 
-class Test extends \Magento\Framework\App\Action\Action{
-    protected $_pageFactory;
-
-    public function  __construct(
-        \Magento\Framework\App\Action\Context $context,
-    \Magento\Framework\View\Result\PageFactory $pageFactory)
+class Test extends \Magento\Framework\App\Action\Action
+{
+    /**
+     * Index action
+     *
+     * @return $this
+     */
+    public function execute()
     {
-        $this->_pageFactory = $pageFactory;
-        return parent::__construct($context);
-    }
-
-    public function execute(){
-        return $this->_pageFactory->create();
+        $this->_view->loadLayout();
+        $this->_view->getLayout()->getBlock('page.main.title')->setPageTitle('DemoWidget');
+        $this->_view->renderLayout();
     }
 }
