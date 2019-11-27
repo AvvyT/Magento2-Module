@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
- 
+
 <layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_layout.xsd">
     <update handle="empty"/>
     <referenceContainer name="page.wrapper">
-        <container name="header.container" as="header_container" label="Page Header Container"  htmlTag="header" htmlClass="page-header" before="main.content"/>
+        <container name="header.container" as="header_container" label="Page Header Container" htmlTag="header" htmlClass="page-header" before="main.content"/>
         <container name="page.top" as="page_top" label="After Page Header" after="header.container"/>
+        <container name="before.top.slider" as="widget_box" label="Widget box container" htmlTag="div" htmlClass="widget-box"/>
         <container name="top.slider" as="slider_box" label="Slider box container" before="before.footer-container" htmlTag="div" htmlClass="slider-box"/>
         <container name="footer-container" as="footer" before="before.body.end" label="Page Footer Container" htmlTag="footer" htmlClass="page-footer" />
     </referenceContainer>
-    
+
 </layout>

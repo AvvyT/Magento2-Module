@@ -2,17 +2,13 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <!--Carousel widget-->
-         <referenceContainer name="top.slider">
-            <block class="Magento\Framework\View\Element\Template" 
-                   name="slider.test" 
-                   template="AvvyTest_FirstAvvysModule::slider.phtml" />
-        </referenceContainer> 
+        <referenceContainer name="top.slider">
+            <block class="Magento\Framework\View\Element\Template" name="slider.test" template="AvvyTest_FirstAvvysModule::slider.phtml" />
+        </referenceContainer>
 
-        <!--  <referenceContainer name="top.widget">
-            <block class="Magento\Framework\View\Element\Template" 
-                   name="widget.test" 
-                   template="AvvyTest_FirstAvvysModule::product/widget/content/grid.phtml" />
-        </referenceContainer>  -->
+        <referenceContainer name="before.top.slider">
+            <block class="Magento\Framework\View\Element\Template" name="widget.test" template="AvvyTest_FirstAvvysModule::widget-carousel.phtml" />
+        </referenceContainer>
 
         <!--Body Content-->
         <referenceContainer name="main">

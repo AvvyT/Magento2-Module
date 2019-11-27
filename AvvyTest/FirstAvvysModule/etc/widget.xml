@@ -32,7 +32,7 @@
             <parameter name="template" xsi:type="select" required="true" visible="true">
                 <label>Template</label>
                 <options>
-                    <option name="grid" value="category/widget/grid.phtml" selected="true">
+                    <option name="grid" value="widget-carousel.phtml" selected="true">
                         <label translate="true">Category Grid Template</label>
                     </option>
                     <option name="sidebar" value="category_sid/widget/sidebar.phtml">

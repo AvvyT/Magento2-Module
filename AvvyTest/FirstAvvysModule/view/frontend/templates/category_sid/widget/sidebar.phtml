@@ -15,9 +15,10 @@
                     <?php else: ?>
                         <img src="<?php echo $block->getPlaceHolderImage(); ?>" alt="<?php echo $category->getName(); ?>" />
                     <?php endif; ?>
-                    <span><?php echo $category->getName(); ?></span>
+                    <span class="list-txt"><?php echo $category->getName(); ?></span>
                 </a>
             </div>
         <?php endforeach; ?>
     </div>
 </div>
+
