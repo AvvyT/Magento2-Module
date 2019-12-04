@@ -7,7 +7,7 @@
         <description>Sorted Catalog Products List</description>
         <parameters>
             <parameter name="title" xsi:type="text" required="true" visible="true" sort_order="10">
-                <label>Label</label>
+                <label>Title</label>
             </parameter>
             <parameter name="products_sort_by" xsi:type="select" visible="true" source_model="AvvyTest\FirstAvvysModule\Model\SortBy">
                 <label translate="true">Sort Products By</label>
@@ -32,22 +32,17 @@
             <parameter name="template" xsi:type="select" required="true" visible="true">
                 <label>Template</label>
                 <options>
-                    <option name="grid" value="widget-carousel.phtml" selected="true">
-                        <label translate="true">Category Grid Template</label>
+                    <option name="default" value="Magento_CatalogWidget::product/widget/content/grid.phtml" selected="true">
+                        <label translate="true">Products Grid Template</label>
+                    </option>
+                    <option name="custom" value="AvvyTest_FirstAvvysModule::new-test.phtml" selected="true">
+                        <label translate="true">Custom Grid Template</label>
                     </option>
                     <option name="sidebar" value="category_sid/widget/sidebar.phtml">
                         <label translate="true">Category Sidebar Template</label>
                     </option>
                 </options>
             </parameter>
-            <!-- <parameter name="template" xsi:type="select" required="true" visible="true">
-                <label translate="true">Template</label>
-                <options>
-                    <option name="default" value="product/widget/new/content/new_grid.phtml" selected="true">
-                        <label translate="true">Products Grid Template</label>
-                    </option>
-                </options>
-            </parameter> -->
             <parameter name="cache_lifetime" xsi:type="text" visible="true">
                 <label translate="true">Cache Lifetime (Seconds)</label>
                 <description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML Output cache.</description>
@@ -56,18 +51,6 @@
                 <label translate="true">Conditions</label>
             </parameter>
         </parameters>
-        <containers>
-            <container name="sidebar.main">
-                <template name="default" value="sidebar" />
-            </container>
-            <container name="content">
-                <template name="grid" value="grid" />
-                <template name="list" value="list" />
-            </container>
-            <container name="sidebar.additional">
-                <template name="default" value="sidebar" />
-            </container>
-        </containers>
     </widget>
 </widgets>
 

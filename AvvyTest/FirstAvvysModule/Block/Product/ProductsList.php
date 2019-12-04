@@ -2,7 +2,6 @@
 
 namespace AvvyTest\FirstAvvysModule\Block\Product;
 
-
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\App\Filesystem\DirectoryList;
 
@@ -11,14 +10,21 @@ use Magento\Framework\App\Filesystem\DirectoryList;
  */
 class ProductsList extends Template implements \Magento\Widget\Block\BlockInterface
 {
+    /**
+     * Default value for products count that will be shown
+     */
+    const DEFAULT_PRODUCTS_COUNT = 10;
+    /**
+     * Default value for products per page
+     */
+    const DEFAULT_PRODUCTS_PER_PAGE = 5;
     const DEFAULT_SORT_BY = 'id';
-
     const DEFAULT_SORT_ORDER = 'asc';
-
     const PAGE_SIZE = 5;
 
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
+        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,        
         \Magento\Catalog\Helper\Category $category,
         \Magento\Catalog\Model\CategoryRepository $categoryRepository,
         \Magento\Widget\Helper\Conditions $conditionsHelper,
@@ -29,6 +35,7 @@ class ProductsList extends Template implements \Magento\Widget\Block\BlockInterf
         array $data = []
     ) {
         $this->storeManager = $context->getStoreManager();
+        $this->_productCollectionFactory = $productCollectionFactory;    
         $this->category = $category;
         $this->categoryRepository = $categoryRepository;
         $this->conditionsHelper = $conditionsHelper;
@@ -37,10 +44,7 @@ class ProductsList extends Template implements \Magento\Widget\Block\BlockInterf
         $this->imageFactory = $imageFactory;
         $this->_filesystem = $filesystem;
         $this->_directory = $filesystem->getDirectoryWrite(DirectoryList::MEDIA);
-        parent::__construct(
-            $context,
-            $data
-        );
+        parent::__construct($context, $data);
     }
 
     /**
@@ -54,6 +58,7 @@ class ProductsList extends Template implements \Magento\Widget\Block\BlockInterf
         $imagePlaceholder = $this->helperImageFactory->create();
         return $this->assetRepos->getUrl($imagePlaceholder->getPlaceholder('small_image'));
     }
+
     /**
      * @param array $categoryIds
      * @return \Magento\Framework\Data\Collection
@@ -91,7 +96,6 @@ class ProductsList extends Template implements \Magento\Widget\Block\BlockInterf
         if (!$this->_directory->isExist($pathTargetDir)) {
             return false;
         }
-
         $image = $this->imageFactory->create();
         $image->open($realPath);
         $image->keepAspectRatio(true);
@@ -127,17 +131,46 @@ class ProductsList extends Template implements \Magento\Widget\Block\BlockInterf
         $conditions = $this->getData('conditions')
             ? $this->getData('conditions')
             : $this->getData('conditions_encoded');
-
         if ($conditions) {
             $conditions = $this->conditionsHelper->decode($conditions);
         }
-
         foreach ($conditions as $key => $condition) {
             if (!empty($condition['attribute']) && $condition['attribute'] == 'category_ids') {
                 return $condition['value'];
             }
         }
         return '';
+    }
+
+    /**
+     * Retrieve how many products should be displayed
+     *
+     * @return int
+     */
+    public function getProductsCount()
+    {
+        if ($this->hasData('products_count')) {
+            return $this->getData('products_count');
+        }
+
+        if (null === $this->getData('products_count')) {
+            $this->setData('products_count', self::DEFAULT_PRODUCTS_COUNT);
+        }
+
+        return $this->getData('products_count');
+    }
+
+    /**
+     * Retrieve how many products should be displayed
+     *
+     * @return int
+     */
+    public function getProductsPerPage()
+    {
+        if (!$this->hasData('products_per_page')) {
+            $this->setData('products_per_page', self::DEFAULT_PRODUCTS_PER_PAGE);
+        }
+        return $this->getData('products_per_page');
     }
 
     public function getSortBy()

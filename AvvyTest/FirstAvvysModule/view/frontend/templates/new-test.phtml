@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * @var $block \AvvyTest\FirstAvvysModule\Block\Product\ProductsList
+ */
+?>
+<?php
+/**------  get product collection  --------------**/
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+
+$collection = $productCollection->create()
+    ->addAttributeToSelect('*')
+    ->load();
+/* 
+ foreach ($collection as $product) {
+    echo 'Name  =  ' . $product->getName() . '<br>'; 
+} 
+*/
+?>
+<?php
+// Min url + Media Path
+$url = $this->getRequest()->getUriString() . "pub/media/catalog/product/"; ?>
+<div class="block-wrapper">
+    <div class="owl-carousel owl-theme">
+        <?php foreach ($collection as $product) : ?>
+            <?php //print_r($product->getData())
+                ?>
+            <div class="item black">
+                <a href="<?= $product->getUrl() ?>">
+                    <img src="<?= $url . $product->getData('image') ?>" />
+                    <div class="block-title">
+                        <strong class="inner"><a href="#"><?= strtolower($product->getName()) ?></a></strong>
+                    </div>
+                </a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+<script type="text/x-magento-init" src="jquery.2.min.js">
+    {
+     "*": {
+        "AvvyTest_FirstAvvysModule/js/carousel": {}
+      }
+ }
+</script>
