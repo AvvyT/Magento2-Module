@@ -19,18 +19,22 @@ $collection = $productCollection->create()
 } 
 */
 ?>
+
 <?php
 // Min url + Media Path
 $url = $this->getRequest()->getUriString() . "pub/media/catalog/product/"; ?>
 <div class="block-wrapper">
+    <div class="block-title" style="color:white;">
+        <h2><?= strtoupper($block->escapeHtml($block->getData('title'))) ?></h2>
+    </div>
     <div class="owl-carousel owl-theme">
         <?php foreach ($collection as $product) : ?>
             <?php //print_r($product->getData())
                 ?>
             <div class="item black">
-                <a href="<?= $product->getUrl() ?>">
+                <a href="<?php echo $product->getProductUrl() ?>">
                     <img src="<?= $url . $product->getData('image') ?>" />
-                    <div class="block-title">
+                    <div class="block-name">
                         <strong class="inner"><a href="#"><?= strtolower($product->getName()) ?></a></strong>
                     </div>
                 </a>

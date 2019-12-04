@@ -56,7 +56,7 @@ class ProductsList extends Template implements \Magento\Widget\Block\BlockInterf
     {
         /** @var \Magento\Catalog\Helper\Image $helper */
         $imagePlaceholder = $this->helperImageFactory->create();
-        return $this->assetRepos->getUrl($imagePlaceholder->getPlaceholder('small_image'));
+        return $this->assetRepos->getUrl($imagePlaceholder->getPlaceholder('image'));
     }
 
     /**

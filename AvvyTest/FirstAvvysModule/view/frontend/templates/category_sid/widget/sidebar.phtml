@@ -1,24 +1,39 @@
 <?php
+
 /**
  * @var $block \AvvyTest\FirstAvvysModule\Block\Product\ProductsList
  */
 ?>
 <div class="category-widget-sidebar">
-    <div class="category-sidebar">
-        <?php $_category = $block->getCategory(); ?>
-        <?php foreach($_category as $category): ?>
-            <div class="category-list">
-                <a href="<?php echo $category->getUrl(); ?>">
-                    <?php if($category->getImageUrl()): ?>
-                        <?php $imageResize = $block->getResize($category->getImage());?>
-                        <img src="<?php echo $imageResize; ?>" alt="<?php echo $category->getName(); ?>" />
-                    <?php else: ?>
-                        <img src="<?php echo $block->getPlaceHolderImage(); ?>" alt="<?php echo $category->getName(); ?>" />
-                    <?php endif; ?>
-                    <span class="list-txt"><?php echo $category->getName(); ?></span>
-                </a>
-            </div>
-        <?php endforeach; ?>
+    <div class="block-wrapper">
+        <div class="block-title" style="color:white;">
+            <h2><?= strtoupper($block->escapeHtml($block->getData('title'))) ?></h2>
+        </div>
+        <div class="owl-carousel owl-theme">
+            <?php $_category = $block->getCategory(); ?>
+            <?php foreach ($_category as $category) : ?>
+                <div class="category-list item black">
+                    <a href="<?php echo $category->getUrl(); ?>">
+                        <?php if ($category->getImageUrl()) : ?>
+                            <?php $imageResize = $block->getResize($category->getImage()); ?>
+                            <img src="<?php echo $imageResize; ?>" alt="<?php echo $category->getName(); ?>" />
+                        <?php else : ?>
+                            <img src="<?php echo $block->getPlaceHolderImage(); ?>" alt="<?php echo $category->getName(); ?>" />
+                        <?php endif; ?>
+                        <div class="block-name">
+                            <strong class="inner"><a href="#"><?php echo 'Look in '. "<br>". $category->getName() . ' category'; ?></a></strong>
+                        </div>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        </div>
     </div>
 </div>
 
+<script type="text/x-magento-init" src="jquery.2.min.js">
+    {
+     "*": {
+        "AvvyTest_FirstAvvysModule/js/carousel": {}
+      }
+ }
+</script>
