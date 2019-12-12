@@ -47,6 +47,15 @@ class ProductsList extends Template implements \Magento\Widget\Block\BlockInterf
         parent::__construct($context, $data);
     }
 
+    public function getCategoryProducts($categoryId) 
+    {
+        $products = $this->getCategoryData($categoryId)->getProductCollection();
+        $products->addAttributeToSelect('*')->setPageSize(14);
+        $products->getSelect()->order("IF('cat_index_position' = '0',true,false)");
+
+        return $products;
+    }
+
     /**
      * Get small place holder image
      *

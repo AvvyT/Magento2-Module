@@ -4,10 +4,11 @@
  * @var $block \AvvyTest\FirstAvvysModule\Block\Product\ProductsList
  */
 ?>
+
 <div class="category-widget-sidebar">
     <div class="block-wrapper">
         <div class="block-title" style="color:white;">
-            <h2><?= strtoupper($block->escapeHtml($block->getData('title'))) ?></h2>
+            <h2 style="color:black;"><?= strtoupper($block->escapeHtml($block->getData('title'))) ?></h2>
         </div>
         <div class="owl-carousel owl-theme">
             <?php $_category = $block->getCategory(); ?>
